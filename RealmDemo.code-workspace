@@ -1,0 +1,868 @@
+{
+	"folders": [
+		{
+			"name": "RealmDemo",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "/home/tewesday/Desktop/UnrealEngine"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"npm.autoDetect": "off"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp",
+			"vadimcn.vscode-lldb",
+			"ms-vscode.mono-debug",
+			"dfarley1.file-picker"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "RealmDemo Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Test",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Test",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo Linux Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Test",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Shipping",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Shipping",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo Linux Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo Linux Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"Linux",
+					"Shipping",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo LinuxArm64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo LinuxArm64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo LinuxArm64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Test",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Test",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo LinuxArm64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Test",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Shipping",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Shipping",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemo LinuxArm64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemo LinuxArm64 Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemo",
+					"LinuxArm64",
+					"Shipping",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemoEditor Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"Debug",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemoEditor Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"DebugGame",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"RealmDemoEditor Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			},
+			{
+				"label": "RealmDemoEditor Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"RealmDemoEditor",
+					"Linux",
+					"Development",
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/tewesday/Desktop/UnrealEngine"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch RealmDemo (Debug)",
+				"request": "launch",
+				"program": "/home/tewesday/Documents/UnrealProjects/RealmDemo/Binaries/Linux/RealmDemo-Linux-Debug",
+				"preLaunchTask": "RealmDemo Linux Debug Build",
+				"args": [
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemo (DebugGame)",
+				"request": "launch",
+				"program": "/home/tewesday/Documents/UnrealProjects/RealmDemo/Binaries/Linux/RealmDemo-Linux-DebugGame",
+				"preLaunchTask": "RealmDemo Linux DebugGame Build",
+				"args": [
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemo (Development)",
+				"request": "launch",
+				"program": "/home/tewesday/Documents/UnrealProjects/RealmDemo/Binaries/Linux/RealmDemo",
+				"preLaunchTask": "RealmDemo Linux Development Build",
+				"args": [
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemo (Test)",
+				"request": "launch",
+				"program": "/home/tewesday/Documents/UnrealProjects/RealmDemo/Binaries/Linux/RealmDemo-Linux-Test",
+				"preLaunchTask": "RealmDemo Linux Test Build",
+				"args": [
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemo (Shipping)",
+				"request": "launch",
+				"program": "/home/tewesday/Documents/UnrealProjects/RealmDemo/Binaries/Linux/RealmDemo-Linux-Shipping",
+				"preLaunchTask": "RealmDemo Linux Shipping Build",
+				"args": [
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemoEditor (Debug)",
+				"request": "launch",
+				"program": "/home/tewesday/Desktop/UnrealEngine/Engine/Binaries/Linux/UnrealEditor-Linux-Debug",
+				"preLaunchTask": "RealmDemoEditor Linux Debug Build",
+				"args": [
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject"
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemoEditor (DebugGame)",
+				"request": "launch",
+				"program": "/home/tewesday/Desktop/UnrealEngine/Engine/Binaries/Linux/UnrealEditor-Linux-DebugGame",
+				"preLaunchTask": "RealmDemoEditor Linux DebugGame Build",
+				"args": [
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject"
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch RealmDemoEditor (Development)",
+				"request": "launch",
+				"program": "/home/tewesday/Desktop/UnrealEngine/Engine/Binaries/Linux/UnrealEditor",
+				"preLaunchTask": "RealmDemoEditor Linux Development Build",
+				"args": [
+					"/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject"
+				],
+				"cwd": "/home/tewesday/Desktop/UnrealEngine",
+				"type": "cppdbg",
+				"visualizerFile": "/home/tewesday/Desktop/UnrealEngine/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Linux Development Build",
+				"program": "/home/tewesday/Desktop/UnrealEngine/Engine/Build/BatchFiles/RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=/home/tewesday/Documents/UnrealProjects/RealmDemo/RealmDemo.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"console": "internalConsole",
+				"internalConsoleOptions": "openOnSessionStart",
+				"stopAtEntry": false,
+				"cwd": "/home/tewesday/Desktop/UnrealEngine"
+			}
+		]
+	}
+}

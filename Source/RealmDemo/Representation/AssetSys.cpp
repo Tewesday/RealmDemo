@@ -67,11 +67,12 @@ UStaticMeshComponent* UAssetSys::AcquireStaticMeshComponent(AActor* InActor)
 
 UStaticMeshComponent* UAssetSys::AcquireStaticMeshComponent(AActor* InActor, FName StaticMeshComponentName)
 {
-	TArray<UActorComponent*> ActorComponents;
-	ActorComponents.Append(InActor->GetComponentsByClass(UStaticMeshComponent::StaticClass()));
-	if (ActorComponents.Num() > 0) {
-		for (int32 ActorComponentIndex = 0; ActorComponentIndex < ActorComponents.Num(); ++ActorComponentIndex) {
-			auto StaticMeshComponent = Cast<UStaticMeshComponent>(ActorComponents[ActorComponentIndex]);
+	TArray<UStaticMeshComponent*> StaticMeshComponents;
+
+	InActor->GetComponents<UStaticMeshComponent>(StaticMeshComponents);
+	if (StaticMeshComponents.Num() > 0) {
+		for (int32 StaticComponentIndex = 0; StaticComponentIndex < StaticMeshComponents.Num(); ++StaticComponentIndex) {
+			auto* StaticMeshComponent = StaticMeshComponents[StaticComponentIndex];
 			if (StaticMeshComponent->GetFName() == StaticMeshComponentName) {
 				return StaticMeshComponent;
 			}

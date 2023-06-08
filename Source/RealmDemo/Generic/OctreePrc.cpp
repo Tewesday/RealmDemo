@@ -56,33 +56,42 @@ void UOctreePrc::Execute(FMassEntityManager& EntitySubsystem, FMassExecutionCont
             for (int32 i = 0; i < QueryLength; ++i) {
                 if (EntityOctreeFragments[i].NeedsFirstOctreeInsertion) {
                     DECLARE_SCOPE_CYCLE_COUNTER(TEXT("InsertOctree"), STAT_InsertOctree, STATGROUP_INSERTOCTREE);
-                    OrthoTree::BoundingBox2D BoundingBox = OrthoTree::BoundingBox2D({ EntitySteeringFragments[i].Position.X - radius, EntitySteeringFragments[i].Position.Y - radius }, { EntitySteeringFragments[i].Position.X + radius, EntitySteeringFragments[i].Position.Y + radius });
+                    FBoxCenterAndExtent BoundingCenterExtent = FBoxCenterAndExtent(FVector(EntitySteeringFragments[i].Position, 0.f), FVector(EntitySteeringFragments[i].Position.X + radius, EntitySteeringFragments[i].Position.Y + radius, 0));
+                    UE::Geometry::FAxisAlignedBox3d BoundingBox = BoundingCenterExtent.GetBox();
+                    
+                    //OrthoTree::BoundingBox2D BoundingBox = OrthoTree::BoundingBox2D({ EntitySteeringFragments[i].Position.X - radius, EntitySteeringFragments[i].Position.Y - radius }, { EntitySteeringFragments[i].Position.X + radius, EntitySteeringFragments[i].Position.Y + radius });
 
                     // Insert box must overlap QuadTree bounds
-                    std::tuple<bool, uint32> Inserted = OctreeSys->QuadTree.Insert(BoundingBox);
-                    if (std::get<bool>(Inserted)) {
-                        EntityOctreeFragments[i].OctreeID = std::get<uint32>(Inserted);
+                    
+                    OctreeSys->QuadTree.InsertObject(OctreeSys->TreeIDs, BoundingBox);
+                    
+            
+                    EntityOctreeFragments[i].OctreeID = OctreeSys->TreeIDs;
 
-                        OctreeSys->TreeIDToEntityHandleMap.Add(std::get<uint32>(Inserted), Context.GetEntity(i));
+                    OctreeSys->TreeIDToEntityHandleMap.Add(OctreeSys->TreeIDs, Context.GetEntity(i));
 
-                        Inserted = OctreeSys->PointTree.Insert(OrthoTree::Point3D{ EntitySteeringFragments[i].Position.X, EntitySteeringFragments[i].Position.Y });
+                    //Inserted = OctreeSys->PointTree.Insert(OrthoTree::Point3D{ EntitySteeringFragments[i].Position.X, EntitySteeringFragments[i].Position.Y });
 
-                        if (std::get<bool>(Inserted)) {
-                            OctreeSys->PointTreeIDToEntityHandleMap.Add(std::get<uint32>(Inserted), Context.GetEntity(i));
-                        }
+                    // if (std::get<bool>(Inserted)) {
+                    //     OctreeSys->PointTreeIDToEntityHandleMap.Add(std::get<uint32>(Inserted), Context.GetEntity(i));
+                    // }
 
-                        EntityOctreeFragments[i].NeedsFirstOctreeInsertion = false;
-                    }
+                    EntityOctreeFragments[i].NeedsFirstOctreeInsertion = false;
+
+                    // Parallel write?
+                    ++OctreeSys->TreeIDs;
                 }
 
                 if (EntityOctreeFragments[i].OctreeNeedsUpdate) {
                     DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UpdateOctree"), STAT_UpdateOctree, STATGROUP_UPDATEOCTREE);
-                    OrthoTree::BoundingBox2D BoundingBox = OrthoTree::BoundingBox2D({ EntitySteeringFragments[i].Position.X - radius, EntitySteeringFragments[i].Position.Y - radius }, { EntitySteeringFragments[i].Position.X + radius, EntitySteeringFragments[i].Position.Y + radius });
+                    FBoxCenterAndExtent BoundingCenterExtent = FBoxCenterAndExtent(FVector(EntitySteeringFragments[i].Position, 0.f), FVector(EntitySteeringFragments[i].Position.X + radius, EntitySteeringFragments[i].Position.Y + radius, 0));
+                    UE::Geometry::FAxisAlignedBox3d BoundingBox = BoundingCenterExtent.GetBox();
+                    //OrthoTree::BoundingBox2D BoundingBox = OrthoTree::BoundingBox2D({ EntitySteeringFragments[i].Position.X - radius, EntitySteeringFragments[i].Position.Y - radius }, { EntitySteeringFragments[i].Position.X + radius, EntitySteeringFragments[i].Position.Y + radius });
 
-                    bool Updated = OctreeSys->QuadTree.Update(EntityOctreeFragments[i].OctreeID, BoundingBox);
+                    bool Updated = OctreeSys->QuadTree.ReinsertObject(EntityOctreeFragments[i].OctreeID, BoundingBox);
                     if (Updated) {
 
-                        OctreeSys->PointTree.Update(EntityOctreeFragments[i].PointTreeID, OrthoTree::Point3D{ EntitySteeringFragments[i].Position.X, EntitySteeringFragments[i].Position.Y });
+                        //OctreeSys->PointTree.Update(EntityOctreeFragments[i].PointTreeID, OrthoTree::Point3D{ EntitySteeringFragments[i].Position.X, EntitySteeringFragments[i].Position.Y });
 
                         EntityOctreeFragments[i].OctreeNeedsUpdate = false;
                     }

@@ -11,7 +11,7 @@
 #include "AssetSys.generated.h"
 
 
-enum MeshTypes;
+//enum MeshTypes;
 
 /**
  *

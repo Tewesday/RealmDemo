@@ -12,8 +12,6 @@
 #include "../Generic/SimTimeAuthoritySubsystem.h"
 #include "../Generic/RandomAuthoritySys.h"
 #include "../Generic/OctreeSys.h"
-#include "../Generic/octree.h"
-#include "../Generic/octree_container.h"
 
 #include "SteeringPrc.generated.h"
 
@@ -40,10 +38,10 @@ class REALMDEMO_API USteeringPrc : public UMassProcessor {
 
     FVector2D CalculateAvoidanceAroundSelf(const FMassEntityHandle SelfHandle, FMSteeringFragment& SteeringFragment);
 
-    std::vector<OrthoTree::entity_id_type> FindEntitiesAroundSelfInRadius(FVector2D Position, float Radius);
-    std::vector<OrthoTree::entity_id_type> FindEntitiesAroundSelf(FMSteeringFragment& SteeringFragment);
+    TArray<int32> FindEntitiesAroundSelfInRadius(FVector2D Position, float Radius);
+    TArray<int32> FindEntitiesAroundSelf(FMSteeringFragment& SteeringFragment);
 
-    std::vector<OrthoTree::entity_id_type> FindNearestEntitiesAroundSelfPoint(FMSteeringFragment& SteeringFragment);
+    //TArray<int32> FindNearestEntitiesAroundSelfPoint(FMSteeringFragment& SteeringFragment);
 
     // Apply new steering forces to velocity and update position
     void UpdatePosition(FVector2D Steering, FMSteeringFragment& SteeringFragment);

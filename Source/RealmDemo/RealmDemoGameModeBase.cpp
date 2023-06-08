@@ -9,7 +9,7 @@ void ARealmDemoGameModeBase::StartPlay()
 
 	UEntityDescriptionSys* EntityDescriptionSys = GetWorld()->GetSubsystem<UEntityDescriptionSys>();
 
-	uint32 TEST_ENTITY_COUNT = 125;
+	uint32 TEST_ENTITY_COUNT = 1;
 	for (uint32 i = 0; i < TEST_ENTITY_COUNT; ++i) {
 		FEntityDescriptionMessage EntityDescriptionMessage = EntityDescriptionSys->CreateStandardEntityDescription(nullptr);
 

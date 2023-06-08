@@ -5,9 +5,8 @@
 #include "MassEntityTypes.h"
 #include "StructUtils.h"
 #include "StructView.h"
+#include "Spatial/SparseDynamicOctree3.h"
 
-#include "../Generic/octree.h"
-#include "../Generic/octree_container.h"
 #include "../Generic/Grid.h"
 
 #include "MovementFragments.generated.h"
@@ -108,7 +107,8 @@ struct REALMDEMO_API FMSteeringFragment : public FMassFragment {
 
     bool ControlledByFormation = false;
 
-    OrthoTree::BoundingBox2D BoundingBox;
+    UE::Geometry::FAxisAlignedBox3d BoundingBox;
+    //OrthoTree::BoundingBox2D BoundingBox;
 
 
     // Used to track if the steering agent hasn't moved

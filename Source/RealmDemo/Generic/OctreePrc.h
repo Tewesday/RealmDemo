@@ -8,6 +8,7 @@
 #include "MassCommandBuffer.h"
 #include "MassCommands.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Spatial/SparseDynamicOctree3.h"
 
 #include "MOctree.h"
 #include "OctreeSys.h"

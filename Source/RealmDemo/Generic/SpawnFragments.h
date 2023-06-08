@@ -37,7 +37,7 @@ struct REALMDEMO_API FSSpawnFragment : public FMassFragment {
 
     // Position of the spawn location
     UPROPERTY(EditAnywhere, Category = "")
-    FVector2D SpawnLocation;
+    FVector2D SpawnLocation = FVector2D::ZeroVector;
 
     // Queue of spawn entities/items (the descriptions for each entity item)
     TArray<FSpawnEventMessage> Items;

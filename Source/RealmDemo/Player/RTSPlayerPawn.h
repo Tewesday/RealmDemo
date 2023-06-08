@@ -13,7 +13,6 @@
 #include "Kismet/KismetMathLibrary.h"
 
 #include "RTSPlayerHUD.h"
-#include "RTSPlayerPawn.h"
 #include "RTSInputFileSys.h"
 
 #include "RTSInputComponent.h"

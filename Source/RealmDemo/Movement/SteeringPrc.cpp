@@ -204,7 +204,7 @@ FVector2D USteeringPrc::CalculateAvoidanceAroundSelf(const FMassEntityHandle Sel
     float radius = 25;
 
     //std::vector<OrthoTree::entity_id_type> IDs = FindEntitiesAroundSelfInRadius(SteeringFragment.Position, radius);
-    std::vector<OrthoTree::entity_id_type> IDs = FindEntitiesAroundSelf(SteeringFragment);
+    TArray<int32> IDs = FindEntitiesAroundSelf(SteeringFragment);
     //std::vector<OrthoTree::entity_id_type> IDs = FindNearestEntitiesAroundSelfPoint(SteeringFragment);
     //TArray<OrthoTree::entity_id_type> IDs;
     //OctreeSys->TreeIDToEntityHandleMap.GetKeys(IDs);
@@ -216,8 +216,7 @@ FVector2D USteeringPrc::CalculateAvoidanceAroundSelf(const FMassEntityHandle Sel
     UEntityActorSys* EntityActorSys = GetWorld()->GetSubsystem<UEntityActorSys>();
 
     DECLARE_SCOPE_CYCLE_COUNTER(TEXT("Avoidance"), STAT_Avoidance, STATGROUP_AVOIDANCE);
-    for (int32 IDsIndex = 0; IDsIndex < IDs.size(); ++IDsIndex) {
-    //for (int32 IDsIndex = 0; IDsIndex < IDs.Num(); ++IDsIndex) {
+    for (int32 IDsIndex = 0; IDsIndex < IDs.Num(); ++IDsIndex) {
         FMassEntityHandle Entity = OctreeSys->TreeIDToEntityHandleMap[IDs[IDsIndex]];
         //FMassEntityHandle Entity = OctreeSys->PointTreeIDToEntityHandleMap[IDs[IDsIndex]];
         // Skip self
@@ -241,27 +240,32 @@ FVector2D USteeringPrc::CalculateAvoidanceAroundSelf(const FMassEntityHandle Sel
     return FVector2D(AverageRepulsion.X, AverageRepulsion.Y) * SEPARATION_WEIGHT;
 }
 
-std::vector<OrthoTree::entity_id_type> USteeringPrc::FindEntitiesAroundSelfInRadius(FVector2D Position, float Radius)
+TArray<int32> USteeringPrc::FindEntitiesAroundSelfInRadius(FVector2D Position, float Radius)
 {
     DECLARE_SCOPE_CYCLE_COUNTER(TEXT("FindEntities"), STAT_FindEntities, STATGROUP_FINDENTITIES);
-    auto SearchBox = OrthoTree::BoundingBox2D({ Position.X - Radius, Position.Y - Radius }, { Position.X + Radius, Position.Y + Radius });
+    UE::Geometry::FAxisAlignedBox3d QueryBox = UE::Geometry::FAxisAlignedBox3d(FBox(FVector(Position.X - Radius, Position.Y - Radius, 0.f ), FVector(Position.X + Radius, Position.Y + Radius, 0.f))); 
+    //auto SearchBox = OrthoTree::BoundingBox2D({ Position.X - Radius, Position.Y - Radius }, { Position.X + Radius, Position.Y + Radius });
     //std::vector<OrthoTree::entity_id_type> IDs = OctreeSys->QuadTree.RangeSearch<false /*overlap allowed*/>(SearchBox);
-    return OctreeSys->QuadTree.RangeSearch<false /*overlap allowed*/>(SearchBox);
+    TArray<int32> QueryIDs;
+    OctreeSys->QuadTree.RangeQuery(QueryBox, QueryIDs);
+    return QueryIDs;
 }
 
-std::vector<OrthoTree::entity_id_type> USteeringPrc::FindEntitiesAroundSelf(FMSteeringFragment& SteeringFragment)
+TArray<int32> USteeringPrc::FindEntitiesAroundSelf(FMSteeringFragment& SteeringFragment)
 {
     DECLARE_SCOPE_CYCLE_COUNTER(TEXT("FindEntities"), STAT_FindEntities, STATGROUP_FINDENTITIES);
     //auto SearchBox = OrthoTree::BoundingBox2D({ Position.X - Radius, Position.Y - Radius }, { Position.X + Radius, Position.Y + Radius });
     //std::vector<OrthoTree::entity_id_type> IDs = OctreeSys->QuadTree.RangeSearch<false /*overlap allowed*/>(SearchBox);
-    return OctreeSys->QuadTree.RangeSearch<false /*overlap allowed*/>(SteeringFragment.BoundingBox);
+    TArray<int32> QueryIDs;
+    OctreeSys->QuadTree.RangeQuery(SteeringFragment.BoundingBox, QueryIDs);
+    return QueryIDs;
 }
 
-std::vector<OrthoTree::entity_id_type> USteeringPrc::FindNearestEntitiesAroundSelfPoint(FMSteeringFragment& SteeringFragment) 
-{
-    DECLARE_SCOPE_CYCLE_COUNTER(TEXT("FindEntities"), STAT_FindEntities, STATGROUP_FINDENTITIES);
-    return OctreeSys->PointTree.GetNearestNeighbors(OrthoTree::Point3D{ SteeringFragment.Position.X, SteeringFragment.Position.Y }, 8);
-}
+// TArray<int32> USteeringPrc::FindNearestEntitiesAroundSelfPoint(FMSteeringFragment& SteeringFragment) 
+// {
+//     DECLARE_SCOPE_CYCLE_COUNTER(TEXT("FindEntities"), STAT_FindEntities, STATGROUP_FINDENTITIES);
+//     return OctreeSys->PointTree.GetNearestNeighbors(OrthoTree::Point3D{ SteeringFragment.Position.X, SteeringFragment.Position.Y }, 8);
+// }
 
 void USteeringPrc::UpdatePosition(FVector2D Steering, FMSteeringFragment& SteeringFragment)
 {
@@ -273,7 +277,8 @@ void USteeringPrc::UpdatePosition(FVector2D Steering, FMSteeringFragment& Steeri
 
     // TODO: USE ENTITY RADIUS
     const float Radius = 25;
-    SteeringFragment.BoundingBox = OrthoTree::BoundingBox2D({ SteeringFragment.Position.X - Radius, SteeringFragment.Position.Y - Radius }, { SteeringFragment.Position.X + Radius, SteeringFragment.Position.Y + Radius });
+    SteeringFragment.BoundingBox = UE::Geometry::FAxisAlignedBox3d(FBox(FVector(SteeringFragment.Position.X - Radius, SteeringFragment.Position.Y - Radius, 0.f ), FVector(SteeringFragment.Position.X + Radius, SteeringFragment.Position.Y + Radius, 0.f)));
+    //SteeringFragment.BoundingBox = OrthoTree::BoundingBox2D({ SteeringFragment.Position.X - Radius, SteeringFragment.Position.Y - Radius }, { SteeringFragment.Position.X + Radius, SteeringFragment.Position.Y + Radius });
 
     SteeringFragment.NeedsOctreeUpdate = true;
 }
